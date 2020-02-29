@@ -1,13 +1,20 @@
 
 const routes = [
   {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    path: '',
+    component: () => import('../layouts/MainLayout'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '/', component: () => import('../pages/Index') }
+    ]
+  },
+  {
+    path: '',
+    component: () => import('../layouts/MainLayoutLogin'),
+    children: [
+      { path: '/page/login', component: () => import('../pages/Login') }
     ]
   }
-]
+];
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {

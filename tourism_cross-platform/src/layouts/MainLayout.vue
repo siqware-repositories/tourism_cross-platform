@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header>
       <q-toolbar>
         <q-btn
           flat
@@ -12,91 +12,101 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Tourism App
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
+            v-model="leftDrawerOpen"
+            show-if-above
+            :width="200"
+            :breakpoint="1000"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+      <q-scroll-area
+              style="height: calc(100% - 130px); margin-top: 130px; border-right: 1px solid rgba(221, 221, 221, 0.32)"
+              :thumb-style="thumbStyle"
+      >
+        <q-list padding>
+          <q-item
+                  clickable
+                  v-ripple
+                  to="/page/login"
+          >
+            <q-item-section avatar>
+              <q-icon name="inbox" />
+            </q-item-section>
+
+            <q-item-section>
+              Inbox
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="star" />
+            </q-item-section>
+
+            <q-item-section>
+              Star
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="send" />
+            </q-item-section>
+
+            <q-item-section>
+              Send
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="drafts" />
+            </q-item-section>
+
+            <q-item-section>
+              Drafts
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+
+      <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 130px">
+        <div class="absolute-bottom bg-transparent">
+          <q-avatar size="56px" class="q-mb-sm">
+            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+          </q-avatar>
+          <div class="text-weight-bold">Razvan Stoenescu</div>
+          <div>@rstoenescu</div>
+        </div>
+      </q-img>
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink'
-
 export default {
   name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
   data () {
     return {
       leftDrawerOpen: false,
-      essentialLinks: [
-        {
-          title: 'Docs',
-          caption: 'quasar.dev',
-          icon: 'school',
-          link: 'https://quasar.dev'
+      miniState: true,
+        thumbStyle: {
+            right: '2px',
+            borderRadius: '5px',
+            backgroundColor: '#0087d2',
+            width: '5px',
+            opacity: 0.75
         },
-        {
-          title: 'Github',
-          caption: 'github.com/quasarframework',
-          icon: 'code',
-          link: 'https://github.com/quasarframework'
-        },
-        {
-          title: 'Discord Chat Channel',
-          caption: 'chat.quasar.dev',
-          icon: 'chat',
-          link: 'https://chat.quasar.dev'
-        },
-        {
-          title: 'Forum',
-          caption: 'forum.quasar.dev',
-          icon: 'record_voice_over',
-          link: 'https://forum.quasar.dev'
-        },
-        {
-          title: 'Twitter',
-          caption: '@quasarframework',
-          icon: 'rss_feed',
-          link: 'https://twitter.quasar.dev'
-        },
-        {
-          title: 'Facebook',
-          caption: '@QuasarFramework',
-          icon: 'public',
-          link: 'https://facebook.quasar.dev'
-        }
-      ]
     }
   }
 }

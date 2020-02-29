@@ -1,9 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-full.svg"
-    >
+  <q-page class="q-pa-md">
+    <q-card class="my-card">
+      <q-card-section>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cupiditate deserunt et harum illo ipsa ipsam iusto minus mollitia perspiciatis praesentium, quibusdam, quisquam quod repellendus sit sunt tempore, unde! Adipisci?
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
